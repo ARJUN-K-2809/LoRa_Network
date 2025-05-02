@@ -1,16 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>About Us</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .about-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .iit-logo {
+            max-width: 150px;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            background: #343a40;
+            color: white;
+        }
+
+        footer a {
+            color: #0dcaf0;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="container mt-4">
+    <div class="container about-container">
         <h1>About Us</h1>
-        <p>This app demonstrates a live MQTT-powered IoT dashboard built with Flask.</p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/77/IIT_Palakkad_Logo.svg/1200px-IIT_Palakkad_Logo.svg.png" alt="IIT Palakkad Logo" class="iit-logo">
+
+        <p>
+            This project is part of the Open-Ended Learning Project (OELP) initiative at the <strong>Indian Institute of Technology Palakkad (IIT Palakkad)</strong>. The OELP program encourages undergraduate students to pursue innovative, interdisciplinary, and real-world engineering problems as part of their academic learning.
+        </p>
+
+        <h4 class="section-title">About IIT Palakkad</h4>
+        <p>
+            IIT Palakkad is one of the newer Indian Institutes of Technology established by the Government of India. Situated in the serene settings of the Western Ghats in Kerala, the institute is dedicated to fostering a culture of research, innovation, and inclusivity. It offers B.Tech, M.Tech, MSc, and Ph.D. programs across a wide range of engineering and science disciplines. With a strong emphasis on hands-on learning and problem-solving, IIT Palakkad is emerging as a center of excellence in technology and innovation.
+        </p>
+
+        <h4 class="section-title">About the Project</h4>
+        <p>
+            This project focuses on building a LoRa-based real-time elephant monitoring system aimed at minimizing human-elephant conflict in forest-adjacent regions. It integrates long-range wireless communication, environmental sensing, and live data dashboards to deliver alerts and insights. The system was conceptualized and developed as part of the OELP to create an impactful technological solution for real-world ecological challenges.
+        </p>
     </div>
+
+    <footer>
+        <p>&copy; 2025 IIT Palakkad | Open-Ended Lab Project</p>
+        <p><a href="#">Back to Home</a></p>
+    </footer>
 </body>
 </html>

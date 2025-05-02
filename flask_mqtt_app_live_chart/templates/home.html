@@ -1,16 +1,198 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Home - Elephant Monitoring</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #00416a, #e4e5e6);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Overview */
+        .overview {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 50px;
+            margin-bottom: 25px;
+        }
+
+        /* Technology Section */
+        .tech-list li {
+            padding: 8px 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            background: #343a40;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0dcaf0;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="container mt-4">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is a live MQTT dashboard for device monitoring.</p>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>LoRa-Based Elephant Monitoring System</h1>
+            <p>Real-time wildlife detection and alert system for reducing human-elephant conflict.</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <div class="container overview">
+        <h3 class="text-center section-title">Project Overview</h3>
+        <p>
+            The Elephant Monitoring System leverages LoRa-based communication and sensor networks to detect and monitor elephant movements in forest-adjacent villages and farmlands. The system provides real-time data visualization on a live dashboard and can trigger alerts to local authorities and communities when potential elephant activity is detected, reducing conflicts and enabling timely preventive measures.
+        </p>
     </div>
+
+    <!-- Features Section -->
+    <div class="container mt-5">
+        <h3 class="text-center section-title">Key Features</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">📡</div>
+                    <h5>LoRa Communication</h5>
+                    <p>Enables long-range, low-power data transmission from field sensors to the gateway unit, even in remote areas without cellular connectivity.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">🌡️</div>
+                    <h5>Environmental Sensing</h5>
+                    <p>Utilizes temperature and sound sensors to detect unusual activity, potentially indicating elephant presence.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">📈</div>
+                    <h5>Live Monitoring</h5>
+                    <p>Data is streamed to a central dashboard via MQTT and visualized in real time with intuitive graphs and alerts.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">🔔</div>
+                    <h5>Alert System</h5>
+                    <p>Configurable alert mechanisms via SMS, email, or local sirens to notify nearby residents and forest officers.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">💡</div>
+                    <h5>Low Power Design</h5>
+                    <p>Optimized for deployment in remote environments with minimal maintenance using solar and battery power.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">🗺️</div>
+                    <h5>Scalable Architecture</h5>
+                    <p>Supports multiple sensor nodes across wide areas, ideal for forest perimeters and high-risk zones.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="container mt-5">
+        <h3 class="text-center section-title">Technology Stack</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="tech-list">
+                    <li><strong>LoRa-E5 Mini:</strong> for long-range wireless communication</li>
+                    <li><strong>ATmega328P:</strong> low-power microcontroller for sensor interfacing</li>
+                    <li><strong>MQTT Broker:</strong> lightweight message transport for real-time updates</li>
+                    <li><strong>Flask (Python):</strong> backend web framework</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="tech-list">
+                    <li><strong>Chart.js:</strong> real-time chart visualization</li>
+                    <li><strong>Bootstrap 5:</strong> responsive frontend framework</li>
+                    <li><strong>Temperature and Sound Sensors:</strong> to detect environmental changes</li>
+                    <li><strong>Solar Power:</strong> energy-efficient deployment in remote areas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use Case Section -->
+    <div class="container mt-5">
+        <h3 class="text-center section-title">Use Case</h3>
+        <p>
+            In regions where wild elephants frequently stray into human settlements, early detection is key to preventing loss of life, crop damage, and infrastructure destruction. This system empowers forest departments and local communities with timely insights to take action before escalation.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 LoRa-Based Elephant Monitoring System</p>
+        <p>Made  by your team | <a href="#">Contact Us</a></p>
+    </footer>
 </body>
 </html>

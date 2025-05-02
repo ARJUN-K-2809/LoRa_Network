@@ -8,7 +8,7 @@ let tempData = {
         data: [],
         fill: false,
         borderColor: 'rgb(255, 99, 132)',
-        tension: 0.1
+        tension: 1
     }]
 };
 
@@ -19,7 +19,7 @@ let soundData = {
         data: [],
         fill: false,
         borderColor: 'rgb(54, 162, 235)',
-        tension: 0.1
+        tension: 1
     }]
 };
 
@@ -30,7 +30,9 @@ let tempchart = new Chart(tempCtx, {
         responsive: true,
         scales: {
             x: { title: { display: true, text: 'Time' } },
-            y: { title: { display: true, text: 'Temperature (°C)' }, beginAtZero: true }
+            y: { title: { display: true, text: 'Temperature (°C)' },
+        min: 0,
+        max: 50 }
         }
     }
 });
@@ -42,7 +44,9 @@ let soundchart = new Chart(soundCtx, {
         responsive: true,
         scales: {
             x: { title: { display: true, text: 'Time' } },
-            y: { title: { display: true, text: 'Sound Level (dB)' }, beginAtZero: true }
+            y: { title: { display: true, text: 'Sound Level (dB)' }, 
+            min: 10,
+            max: 50}
         }
     }
 });
