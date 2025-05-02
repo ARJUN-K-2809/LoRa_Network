@@ -1,0 +1,13 @@
+.chart-container {
+    display: flex;
+    justify-content: space-around; /* or use space-between/center */
+    flex-wrap: wrap; /* Makes it responsive */
+    gap: 20px;
+    padding: 20px;
+    display: none;
+}
+
+canvas {
+    flex: 1 1 45%; /* Grow/shrink with min width */
+    max-width: 500px;
+}
