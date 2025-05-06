@@ -1,5 +1,7 @@
 const tempCtx = document.getElementById('tempChart').getContext('2d');
 const soundCtx = document.getElementById('soundChart').getContext('2d');
+const heartCtx = document.getElementById('heartChart').getContext('2d');
+
 
 let tempData = {
     labels: [],
@@ -22,6 +24,19 @@ let soundData = {
         tension: 1
     }]
 };
+
+let heartData = {
+    labels: [],
+    datasets: [{
+        label: 'Heart Rate (bpm)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(255, 206, 86)',
+        tension: 1
+    }]
+};
+
+
 
 let tempchart = new Chart(tempCtx, {
     type: 'line',
@@ -51,6 +66,19 @@ let soundchart = new Chart(soundCtx, {
     }
 });
 
+let heartchart = new Chart(heartCtx, {
+    type: 'line',
+    data: heartData,
+    options: {
+        responsive: true,
+        scales: {
+            x: { title: { display: true, text: 'Time' } },
+            y: { title: { display: true, text: 'Heart Rate (bpm)' },
+                 min: 40, max: 180 }
+        }
+    }
+});
+
 
 function fetchData() {
     fetch('/get-latest-data')
@@ -62,6 +90,7 @@ function fetchData() {
                 const payloadStr = data.payload.toString().padStart(6, '0'); // Ensure 6 digits
                 const tempVal = parseFloat(payloadStr.slice(0, 4)) / 100; // Example: "1234" -> 12.34°C
                 const soundVal = parseInt(payloadStr.slice(4, 6)); // Example: "56" -> 56 dB
+                const heartVal = parseInt(payloadStr.slice(6, 8)); // Adjust this if needed 
 
                 // Update temperature chart
                 tempchart.data.labels.push(currentTime);
@@ -79,8 +108,20 @@ function fetchData() {
                     soundchart.data.datasets[0].data.shift();
                 }
 
+                // Update heart chart
+                heartchart.data.labels.push(currentTime);
+                heartchart.data.datasets[0].data.push(heartVal);
+                if (heartchart.data.labels.length > 20) {
+                    heartchart.data.labels.shift();
+                    heartchart.data.datasets[0].data.shift();
+                }
+                
+
+
                 tempchart.update();
                 soundchart.update();
+                heartchart.update();
+                
             } else {
                 console.error('Invalid payload received:', data.payload);
             }
