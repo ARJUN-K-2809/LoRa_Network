@@ -1,11 +1,10 @@
-
-from flask import Flask, render_template, jsonify,flash
+from flask import Flask, render_template, jsonify,flash # type: ignore
 from mqtt_client import start_mqtt, latest_data
 import threading
 import paho.mqtt.client as mqtt
 import base64
 import json
-# import '' from mqtt_client
+
 app = Flask(__name__)
 app.secret_key = 'Lora'
 
@@ -16,6 +15,7 @@ mqtt_thread = threading.Thread(target=start_mqtt)
 mqtt_thread.daemon = True
 mqtt_thread.start()
 
+
 from mqtt_client import latest_data
 
 @app.route('/',methods=['POST','GET'])
@@ -24,7 +24,7 @@ def home():
 
 @app.route('/device-data')
 def device_data():
-    flash(latest_data['payload'])
+    # flash(str(latest_data['payload']))
     return render_template('device_data.html')
 
 @app.route('/about')
@@ -34,7 +34,7 @@ def about():
 @app.route('/get-latest-data')
 def get_latest_data():
     # start_mqtt()
-    return jsonify({'data': latest_data['payload']})
+    return jsonify({'end-node-3': latest_data['end-node-3'],'end-node-4': latest_data['end-node-4'],'end-node-5': latest_data['end-node-5']})
 
 @app.route('/get-latest-number')
 def get_latest_number():
@@ -45,5 +45,4 @@ def get_latest_number():
     return jsonify({'value': value})
 
 if __name__ == '__main__':
-    # threading.Thread(target=start_mqtt).start()
     app.run(debug=True)

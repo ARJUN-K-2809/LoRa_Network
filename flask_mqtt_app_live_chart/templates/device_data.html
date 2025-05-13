@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,98 +6,150 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../styles/device_data.css">
-</head>
-<body>
-    {% include 'navbar.html' %}
-    <div class="container mt-4">
-        <h2>Live Device Data</h2>
-        {% for message in get_flashed_messages() %}
-        <p id="flash">{{ message }}</p>
-        {% endfor %}
-        <!-- <canvas id="liveChart" height="100"></canvas> -->
-        <div class="chart-container">
-            <canvas id="tempChart" width="400" height="200"></canvas>
-            <canvas id="soundChart" width="400" height="200"></canvas>
-            <canvas id="heartChart" width="400" height="200"></canvas>
-        </div>
-        
-    </div>
-    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+
     <style>
-    body {
+        html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    margin: 0;
-    padding: 0;
-    }
+}
 
-    h2 {
-        text-align: center;
-        margin: 30px 0 20px;
-        font-weight: 700;
-        color: #0056b3;
-        font-size: 2rem;
-    }
+h2 {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-weight: 700;
+    color: #0056b3;
+    font-size: 2rem;
+}
 
-    #flash {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-        padding: 12px 20px;
-        border-radius: 6px;
-        margin: 15px auto;
-        text-align: center;
-        width: 85%;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-        font-size: 1rem;
-    }
+#flash {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin: 10px auto;
+    text-align: center;
+    width: 85%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
 
+.chart-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: stretch; */
+    /* height: calc(100vh - 130px); Adjust depending on header height */
+    overflow-x: auto;
+    padding: 10px;
+    gap: 20px;
+    height: 80%;
+    
+}
+
+.chart-box {
+    flex: 1 1 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: #fff; */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    /* min-width: 300px; */
+    max-width: 100%;border: black 2px ;
+    border-style: solid;
+}
+
+.chart-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+canvas {
+    flex: 1;
+    width: 100% ;
+    height: 100% ;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background: #fff;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+canvas:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.alert {
+    margin-top: 8px;
+    padding: 6px 10px;
+    background-color: #ffcccc;
+    color: #b30000;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.hidden {
+    display: none;
+}
+
+.size {
+    height: 100%;
+}
+
+@media (max-width: 900px) {
     .chart-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 30px;
-        padding: 30px;
-        margin: 0 auto;
-        max-width: 1200px;
-        background: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        flex-direction: column;
+        height: auto;
+    }
+
+    .chart-box {
+        width: 100%;
+        height: 60vh;
     }
 
     canvas {
-        width: 100%;
-        max-width: 360px;
-        height: auto;
-        background: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 10px;
-        padding: 12px;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        height: 100% !important;
     }
+}
+</style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+        <h2>Live Device Data</h2>
 
-    canvas:hover {
-        transform: scale(1.03);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p id="flash">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-    @media (max-width: 900px) {
-        .chart-container {
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>end-node-3 (Sound)</h3>
+                <canvas id="soundChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>end-node-4 (Heart Rate)</h3>
+                <canvas id="heartChart"></canvas>
+                <div id="heartAlert" class="alert hidden">⚠️ High Heart Rate!</div>
+            </div>
+            <div class="chart-box">
+                <h3>end-node-5 (Temperature)</h3>
+                <canvas id="tempChart"></canvas>
+                <div id="tempAlert" class="alert hidden">⚠️ High Temperature detected!</div>
+            </div>
+        </div>
 
-        canvas {
-            max-width: 90%;
-        }
-    }
-
-
-
-
-        </style>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
 </body>
 </html>
