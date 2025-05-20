@@ -57,7 +57,7 @@ Displays real-time readings and sends alerts when thresholds (e.g., > 100 bpm) a
 4.1 AT Firmware (Pre-built LoRa firmware)
 Used to configure LoRa-E5 with AT commands (via serial)
 
-Set DevEUI, AppEUI, AppKey using a terminal or tool like Tera Term
+Set DevEUI, AppEUI, AppKey using a terminal or serial monitor
 
 4.2 User Firmware (STM32)
 Custom firmware written in C (STM32CubeIDE) or Arduino
@@ -65,7 +65,6 @@ Custom firmware written in C (STM32CubeIDE) or Arduino
 Responsible for:
 Reading sensors
 Encoding and sending payloads to LoRa module
-Managing power and timing
 
 # 5. License
 This project is currently under development. The license will be updated soon. Please contact the contributors before use in commercial projects.
