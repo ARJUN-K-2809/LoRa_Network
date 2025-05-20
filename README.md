@@ -1,4 +1,4 @@
-# 🛰️ LoRa-Based Sensor Data Transmission System
+#  LoRa-Based Sensor Data Transmission System
 
 This repository contains the complete source code and documentation for a LoRa-based system that transmits real-time sensor data from end nodes to a GUI via The Things Network (TTN) using the MQTT protocol. The system is designed for efficient remote monitoring using STM32 microcontrollers, LoRa-E5 modules, and a Flask-based dashboard.
 
