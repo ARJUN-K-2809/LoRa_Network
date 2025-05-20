@@ -4,7 +4,7 @@ This repository contains the complete source code and documentation for a LoRa-b
 
 ---
 
-1. About
+# 1. About
 
 The project aims to demonstrate end-to-end communication from LoRa end nodes (equipped with sensors) to a cloud-integrated GUI. The system leverages:
 - **LoRa-E5 modules** for wireless long-range communication
@@ -15,7 +15,7 @@ The project aims to demonstrate end-to-end communication from LoRa end nodes (eq
 
 ---
 
-2. Installation
+# 2. Installation
 
 Follow the steps below to set up the development environment:
 
@@ -38,7 +38,7 @@ source venv/bin/activate
 pip install flask
 pip install -r requirements.txt 
 
-3. Usage
+# 3. Usage
 3.1 Transmitting Sensor Data
 Upload firmware to STM32 that collects data from:
 
@@ -53,7 +53,7 @@ The Flask app fetches MQTT messages from TTN’s MQTT broker.
 
 Displays real-time readings and sends alerts when thresholds (e.g., > 100 bpm) are crossed.
 
-4. Configuration
+# 4. Configuration
 4.1 AT Firmware (Pre-built LoRa firmware)
 Used to configure LoRa-E5 with AT commands (via serial)
 
@@ -67,10 +67,10 @@ Reading sensors
 Encoding and sending payloads to LoRa module
 Managing power and timing
 
-5. License
+# 5. License
 This project is currently under development. The license will be updated soon. Please contact the contributors before use in commercial projects.
 
-6. Contact
+# 6. Contact
 For queries, contact:
 Nalan : 122201034@smail.iitpkd.ac.in
 Arjun : 122301004@smail.iitpkd.ac.in
