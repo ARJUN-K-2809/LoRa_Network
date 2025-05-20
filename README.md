@@ -22,11 +22,12 @@ Follow the steps below to set up the development environment:
 ###  STM32 Setup
 - Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - Install ST-Link USB drivers
-- Use STM32CubeMX to configure peripherals and generate code
+- Use STM32CubeMX to configure peripherals and generate code (STM32CubeIDE has this feature in-built, where confugurations can be done in .ino file)
 
 ### Arduino IDE (For User Firmware or Debugging)
 - Install [Arduino IDE](https://www.arduino.cc/en/software)
-- Install necessary board packages if using STM32 with Arduino
+- Install necessary board packages
+- Install PulseSensor Playground in library manager
 
 ### Flask Backend
 
